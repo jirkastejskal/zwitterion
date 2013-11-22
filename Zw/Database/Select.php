@@ -21,9 +21,13 @@ class ZwDatabaseSelect
         foreach ($this->_joins as $join) {
             $str .= ',';
             $joincols = array();
-            foreach($join['cols'] as $joinalias => $joincol)
-                $joincols[] = $joincol.' AS '.$joinalias;
-            $str .= implode(',',$joincols);
+            if ($join['cols'] == null) {
+                $str.= $join['table'].'.*';
+            } else {
+                foreach($join['cols'] as $joinalias => $joincol)
+                    $joincols[] = $joincol.' AS '.$joinalias;
+                $str .= implode(',',$joincols);
+            }
         }
         $str .= ' FROM '.$this->_table;
         foreach ($this->_joins as $join) {
@@ -112,6 +116,23 @@ class ZwDatabaseSelect
         $elem['cond'] = $cond;
         $elem['cols'] = $cols;
         $elem['type'] = 'INNER';
+        $this->_joins[] = $elem;
+        return $this;
+    }
+
+    /**
+     * @param string $table
+     * @param string $cond
+     * @param null|string|array $cols
+     * @return $this
+     */
+    public function joinLeft($table,$cond,$cols=null)
+    {
+        $elem = array();
+        $elem['table'] = $table;
+        $elem['cond'] = $cond;
+        $elem['cols'] = $cols;
+        $elem['type'] = 'LEFT';
         $this->_joins[] = $elem;
         return $this;
     }
