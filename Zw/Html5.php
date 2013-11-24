@@ -21,9 +21,9 @@ class ZwHtml5
         if (isset($vars['closure'])) {
             if ($local && !isset($vars['closure_release'])) {
                 echo "  <script type=\"text/javascript\">\n    var CLOSURE_NO_DEPS = true;\n";
-                echo "    var CLOSURE_BASE_PATH = \"http://127.0.0.2\";\n";
+                echo "    var CLOSURE_BASE_PATH = \"http://127.0.0.2/\";\n";
                 echo "  </script>\n";
-                $vars['javascripts'].=';http://127.0.0.2/closure/closure/goog/base.js;http://127.0.0.2/promyka/deps.js';
+                $vars['javascripts'].=';http://127.0.0.2/closure/closure/goog/base.js;http://127.0.0.2/deps.js';
             } else {
                 $vars['javascripts'].=';/frontend/'.$vars['closure'].'.js.gz';
             }
