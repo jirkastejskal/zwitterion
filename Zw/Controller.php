@@ -45,7 +45,7 @@ class ZwController
     {
         if ($this->layoutScriptName != "") {
             include $this->theApp->sitePath.'/'.$this->layoutScriptName.'.phtml';
-        }
+        } else $this->viewScript();
     }
     private function viewScript()
     {
