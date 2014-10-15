@@ -20,4 +20,9 @@ class ZwMedia
         imagedestroy($image_small);
         imagedestroy($image_orig);
     }
+
+    static public function SmazObrazek ($jmeno, $cesta)
+    {
+    }
+
 }
